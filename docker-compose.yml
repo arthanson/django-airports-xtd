@@ -1,0 +1,213 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: airports_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Quick test runner (Python 3.12 + Django 5.1)
+  test-quick:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.12"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.1"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: pytest -v
+
+  # Python 3.10 runners
+  test-py310-dj50:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.10"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.0"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.0,<5.1' && pytest -v"
+
+  test-py310-dj51:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.10"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.1"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.1,<5.2' && pytest -v"
+
+  test-py310-dj52:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.10"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.2"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.2,<6.0' && pytest -v"
+
+  # Python 3.11 runners
+  test-py311-dj50:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.11"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.0"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.0,<5.1' && pytest -v"
+
+  test-py311-dj51:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.11"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.1"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.1,<5.2' && pytest -v"
+
+  test-py311-dj52:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.11"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.2"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.2,<6.0' && pytest -v"
+
+  # Python 3.12 runners
+  test-py312-dj50:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.12"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.0"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.0,<5.1' && pytest -v"
+
+  test-py312-dj51:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.12"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.1"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.1,<5.2' && pytest -v"
+
+  test-py312-dj52:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.12"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.2"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.2,<6.0' && pytest -v"
+
+  # Python 3.13 runners
+  test-py313-dj51:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.13"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.1"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.1,<5.2' && pytest -v"
+
+  test-py313-dj52:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.13"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.2"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.2,<6.0' && pytest -v"
+
+  test-py313-dj60:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.13"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "6.0"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=6.0,<6.1' && pytest -v"
+
+  # Python 3.14 runners (future)
+  test-py314-dj52:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.14-rc"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "5.2"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=5.2,<6.0' && pytest -v"
+
+  test-py314-dj60:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.14-rc"
+    environment:
+      DATABASE_URL: postgis://postgres:postgres@db:5432/airports_test
+      DJANGO_VERSION: "6.0"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "pip install 'Django>=6.0,<6.1' && pytest -v"

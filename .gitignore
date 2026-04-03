@@ -1,0 +1,72 @@
+*.py[cod]
+__pycache__
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+htmlcov
+.pytest_cache/
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Pycharm/Intellij
+.idea
+
+# VS Code
+.vscode/
+
+# Complexity
+output/*.html
+output/*/index.html
+
+# Sphinx
+docs/_build
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Docker
+.docker/
+
+# Database
+*.sqlite3
+
+# Local data
+airports/data/
+
+# Ruff
+.ruff_cache/
+
+# Claude
+claude.md
+CLAUDE.md
