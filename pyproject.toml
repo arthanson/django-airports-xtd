@@ -7,7 +7,7 @@ name = "django-airports-xtd"
 version = "0.3.0"
 description = "Django app providing airport data from OpenFlights"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Antonio Ercole De Luca", email = "eracle@posteo.eu"},
 ]
@@ -23,7 +23,6 @@ classifiers = [
     "Framework :: Django :: 5.1",
     "Framework :: Django :: 5.2",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
